@@ -201,7 +201,7 @@ Once your run is successfully submitted, you will get another notification that 
 >
 >![Open AutoML code in notebook](./../media/lab-01-ex-02-task-01-open-in-notebook.png)
 >
->Take a moment to read through the code that is generated for you. The total time elapsed for the experiment run will take around 20 minutes.
+>Take a moment to read through the code that is generated for you. As the total time required for the experiment run will be around 15 to 20 minutes, advance to the next task to explore the details of the Automated ML process you triggered.
 
 ### Task 3 - View experiment details in Azure Machine Learning workspace
 
@@ -219,15 +219,21 @@ The reason why you see `local` as the compute target is because you are running 
 
 Select your run, and then select the `Models` tab to view the current list of models being built by your run. The models are listed in descending order of the metric value (which is `Spearman correlation` in this case), the best ones being listed first.
 
+>**NOTE**
+>
+>If there are no models in the list, wait a few miuntes and then refresh the list.
+
 ![Models built by AutoML run](./../media/lab-01-ex-02-task-02-run-details.png)
 
 Select the best model (the one at the top of the list) then click on `View Explanations` to open the `Explanations (preview)` tab to see the model explanation. You are now able to select one of the explanations, then choose `Aggregates` to see the global importance of the input features. For your model, the feature that influences the most the value of the predicted value is   `ProductId`.
 
 ![Explainability of the best AutoML model](./../media/lab-01-ex-02-task-02-best-mode-explained.png)
 
-Next, select the `Models` section on the left in Azure Machine Learning Studio and see your best model registered with Azure Machine Learning. This allows you to refer to this model later on in this lab.
+Once the execution of the Automated ML process finishes, select the `Models` section on the left in Azure Machine Learning Studio and see your best model registered with Azure Machine Learning.
 
 ![AutoML best model registered in Azure Machine Learning](./../media/lab-01-ex-02-task-02-model-registry.png)
+
+You have now successfully trained and registered an Azure Machine Learning model using Synapse Studio and data stored in Synapse Analytics.
 
 ## Resources
 
