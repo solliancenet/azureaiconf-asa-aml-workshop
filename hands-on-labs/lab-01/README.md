@@ -16,6 +16,22 @@ This lab has the following structure:
     - [Task 2 - View experiment details in Azure Machine Learning workspace](#task-2---view-experiment-details-in-azure-machine-learning-workspace)
   
 
+## Before the hands-on lab
+
+### Task 1 - Register for the hands-on lab
+
+Follow your instructor's indications and register for the hands-on lab. Once registration is complete and your lab environment is available, proceed to the next task.
+
+### Task 2 - Check lab credentials
+
+Once lab registration is complete and your lab environment is available, you should be able to view the details of your lab environment. The `Environment Details` tab displays your Azure AD user credentials:
+
+![Lab environment details - Azure credentials](./../media/lab-credentials-01.png)
+
+Select `Service Principal Details` to view the credentials of the service pricinpal you will use in the lab:
+
+![Lab environment details - Service principal details](./../media/lab-credentials-02.png)
+
 ## Exercise 1 - Create an Azure Machine Learning linked service
 
 In this exercise, you will create and configure an Azure Machine Learning linked service in Synapse Studio. Once the linked service is available, you will explore the Azure Machine Learning integration features in Synapse Studio.
