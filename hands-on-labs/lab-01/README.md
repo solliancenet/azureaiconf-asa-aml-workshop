@@ -15,8 +15,9 @@ This lab has the following structure:
     - [Task 1 - Create and configure an Azure Machine Learning linked service in Synapse Studio](#task-1---create-and-configure-an-azure-machine-learning-linked-service-in-synapse-studio)
     - [Task 2 - Explore Azure Machine Learning integration features in Synapse Studio](#task-2---explore-azure-machine-learning-integration-features-in-synapse-studio)
   - [Exercise 2 - Trigger an Auto ML experiment using data from a Spark table](#exercise-2---trigger-an-auto-ml-experiment-using-data-from-a-spark-table)
-    - [Task 1 - Trigger a regression Auto ML experiment on a Spark table](#task-1---trigger-a-regression-auto-ml-experiment-on-a-spark-table)
-    - [Task 2 - View experiment details in Azure Machine Learning workspace](#task-2---view-experiment-details-in-azure-machine-learning-workspace)
+    - [Task 1 - Ensure Spark pool resources are available](#task-1---ensure-spark-pool-resources-are-available)
+    - [Task 2 - Trigger a regression Auto ML experiment on a Spark table](#task-2---trigger-a-regression-auto-ml-experiment-on-a-spark-table)
+    - [Task 3 - View experiment details in Azure Machine Learning workspace](#task-3---view-experiment-details-in-azure-machine-learning-workspace)
   - [Resources](#resources)
   
 
@@ -136,7 +137,15 @@ The following options are available in the `Machine Learning` section:
 
 In this exercise, you will trigger the execution of an Auto ML experiment and view its progress in Azure Machine learning studio.
 
-### Task 1 - Trigger a regression Auto ML experiment on a Spark table
+### Task 1 - Ensure Spark pool resources are available
+
+Due to the limited compute resources allocated to the lab environment, you must free up the Spark pool resources consumed by the notebook you run during Exercise 1. To do this, open Synapse Studio, select the `Monitor` hub on the left side, and then select the `Apache Spark applications` section.
+
+![Cancel Spark application](./../media/lab-01-ex-02-task-01-stop-spark-application.png)
+
+Select the application that has a status of `Running` and cancel its execution. This will free up the Spark pool resources needed for this exercise.
+
+### Task 2 - Trigger a regression Auto ML experiment on a Spark table
 
 To trigger the execution of a new AutoML experiment, select the `Data` hub and then select the `...` area on the right of the `saleconsolidated` Spark table to activate the context menu.
 
@@ -148,7 +157,7 @@ From the context menu, select `Enrich with new model`.
 
 The `Enrich with new model` dialog allow you to set the properties for the Azure Machine Learning experiment. Provide values as follows:
 
-- **Azure Machine Learning workspace**: leave unchanged, should be automaticall populated with your Azure Machine Learning workspace name.
+- **Azure Machine Learning workspace**: leave unchanged, should be automatically populated with your Azure Machine Learning workspace name.
 - **Experiment name**: leave unchanged, a name will be automatically suggested.
 - **Best model name**: leave unchanged, a name will be automatically suggested. Save this name as you will need it later to identify the model in the Azure Machine Learning Studio.
 - **Target column**: Select `TotalQuantity(long)` - this is the feature you are looking to predict.
@@ -194,7 +203,7 @@ Once your run is successfully submitted, you will get another notification that 
 >
 >Take a moment to read through the code that is generated for you. The total time elapsed for the experiment run will take around 20 minutes.
 
-### Task 2 - View experiment details in Azure Machine Learning workspace
+### Task 3 - View experiment details in Azure Machine Learning workspace
 
 To view the experiment run you just started, open the Azure Portal, select your resource group, and then select the Azure Machine Learning workspace from the resource group.
 
