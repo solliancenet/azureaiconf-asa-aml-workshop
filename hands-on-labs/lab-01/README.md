@@ -229,6 +229,10 @@ Select the best model (the one at the top of the list) then click on `View Expla
 
 ![Explainability of the best AutoML model](./../media/lab-01-ex-02-task-02-best-mode-explained.png)
 
+>**NOTE**
+>
+>As the execution of the Automated ML process progresses, the list of models is being constantly updated (which implies the best model can also change). While the process is running, refresh periodically the list and explore the models being generated.
+
 Once the execution of the Automated ML process finishes, select the `Models` section on the left in Azure Machine Learning Studio and see your best model registered with Azure Machine Learning.
 
 ![AutoML best model registered in Azure Machine Learning](./../media/lab-01-ex-02-task-02-model-registry.png)
