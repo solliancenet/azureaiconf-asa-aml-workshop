@@ -35,31 +35,29 @@ Select `Service Principal Details` to view the credentials of the service pricin
 
 ![Lab environment details - Service principal details](./../media/lab-credentials-02.png)
 
+Later on, during the lab, you will need the values for the `Application Id` and `Secret Key` properties displayed here.
+
 ## Exercise 1 - Create an Azure Machine Learning linked service
 
 In this exercise, you will create and configure an Azure Machine Learning linked service in Synapse Studio. Once the linked service is available, you will explore the Azure Machine Learning integration features in Synapse Studio.
 
 ### Task 1 - Create and configure an Azure Machine Learning linked service in Synapse Studio
 
-The Synapse Analytics linked service authenticates with Azure Machine Learning using a service principal. The service principal is based on an Azure Active Directory application named `Azure Synapse Analytics GA Labs` and has already been created for you by the deployment procedure. The secret associated with the service principal has also been created and saved in the Azure Key Vault instance, under the `ASA-GA-LABS` name.
+The Synapse Analytics linked service authenticates with Azure Machine Learning using a service principal. The service principal is based on an Azure Active Directory application named `https://odl_user_sp_NNNNNN` (where `NNNNNN` is a unique identifier assigned to your lab) and has already been created for you by the lab setup procedure. The secret associated with the service principal is available in the `Service Principal Details` section of your `Environment Details` page.
 
 >**NOTE**
 >
 >In the labs provided by this repo, the Azure AD application is used in a single Azure AD tenant which means it has exactly one service principal associated to it. Consequently, we will use the terms Azure AD application and service principal interchangeably. For a detailed explanation on Azure AD applications and security principals, see [Application and service principal objects in Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals).
 
-To view the service principal, open the Azure portal and navigate to your instance of Azure Active directory. Select the `App registrations` section and you should see the `Azure Synapse Analytics GA Labs` application under the `Owned applications` tab.
+To view the service principal, open the Azure portal and navigate to your instance of Azure Active directory. Select the `App registrations` and then type the display name of the service principal (in the form `https://odl_user_sp_NNNNNN` - the exact name is available in your environment details) in the search bar unde the `All applications` tab.
 
 ![Azure Active Directory application and service principal](./../media/lab-01-ex-01-task-01-service-principal.png)
 
-Select the application to view its properties and copy the value of the `Application (client) ID` property (you will need it in a moment to configure the linked service).
+Select the application to view its properties.
 
 ![Azure Active Directory application client ID](./../media/lab-01-ex-01-task-01-service-principal-clientid.png)
 
-To view the secret, open the Azure Portal and navigate to the Azure Key Vault instance that has been created in your resource group. Select the `Secrets` section and you should see the `ASA-GA-LABS` secret:
-
-![Azure Key Vault secret for security principal](./../media/lab-01-ex-01-task-01-keyvault-secret.png)
-
-First, you need to make sure the service principal has permissions to work with the Azure Machine Learning workspace. Open the Azure Portal and navigate to the Azure Machine Learning workspace that has been created in your resource group. Select the `Access control (IAM)` section on the left, then select `+ Add` and `Add role assignment`. In the `Add role assignment` dialog, select the `Contributor` role, select `Azure Synapse Analytics GA Labs` service principal, and the select `Save`.
+Next, check that the service principal has permissions to work with the Azure Machine Learning workspace. Open the Azure Portal and navigate to the Azure Machine Learning workspace that has been created in your resource group. Select the `Access control (IAM)` section on the left, then select `Role assignments`. In the `Role assignments` list, you should be able to see that `https://odl_user_sp_NNNNNN` has the `Contributor` role on the Machine Learning workspace.
 
 ![Azure Machine Learning workspace permissions for security principal](./../media/lab-01-ex-01-task-01-mlworkspace-permissions.png)
 
@@ -75,20 +73,13 @@ In the `New linked service (Azure Machine Learning)` dialog, provide the followi
 - Azure subscription: make sure the Azure subscription containing your resource group is selected.
 - Azure Machine Learning workspace name: make sure your Azure Machine Learning workspace is selected.
 - Notice how `Tenant identifier` has been already filled in for you.
-- Service principal ID: enter the application client ID that you copied earlier.
-- Select the `Azure Key Vault` option.
-- AKV linked service: make sure your Azure Key Vault service is selected.
-- Secret name: enter `ASA-GA-LABS`.
+- Service principal ID: enter the value of the `Application Id` property form your environment details.
+- Select the `Service principal key` option.
+- Service principal key: enter the value of the `Secret key` property from your environment details.
 
 ![Configure linked service in Synapse Studio](./../media/lab-01-ex-01-task-01-configure-linked-service.png)
 
 Next, select `Test connection` to make sure all settings are correct, and then select `Create`. The Azure Machine Learning linked service will now be created in the Synapse Analytics workspace.
-
->**IMPORTANT**
->
->The linked service is not complete until you publish it to the workspace. Notice the indicator near your Azure Machine Learning linked service. To publish it, select `Publish all` and then `Publish`.
-
-![Publish Azure Machine Learning linked service in Synapse Studio](./../media/lab-01-ex-01-task-01-publish-linked-service.png)
 
 ### Task 2 - Explore Azure Machine Learning integration features in Synapse Studio
 
