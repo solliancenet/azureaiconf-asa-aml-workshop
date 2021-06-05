@@ -7,13 +7,16 @@ After completing the lab, you will understand the main steps of an end-to-end Ma
 This lab has the following structure:
 
 - [Lab 01 - The Integrated Machine Learning Process in Synapse Analytics](#lab-01---the-integrated-machine-learning-process-in-synapse-analytics)
-
+  - [Before the hands-on lab](#before-the-hands-on-lab)
+    - [Task 1 - Register for the hands-on lab](#task-1---register-for-the-hands-on-lab)
+    - [Task 2 - Check lab credentials](#task-2---check-lab-credentials)
   - [Exercise 1 - Create an Azure Machine Learning linked service](#exercise-1---create-an-azure-machine-learning-linked-service)
     - [Task 1 - Create and configure an Azure Machine Learning linked service in Synapse Studio](#task-1---create-and-configure-an-azure-machine-learning-linked-service-in-synapse-studio)
     - [Task 2 - Explore Azure Machine Learning integration features in Synapse Studio](#task-2---explore-azure-machine-learning-integration-features-in-synapse-studio)
   - [Exercise 2 - Trigger an Auto ML experiment using data from a Spark table](#exercise-2---trigger-an-auto-ml-experiment-using-data-from-a-spark-table)
     - [Task 1 - Trigger a regression Auto ML experiment on a Spark table](#task-1---trigger-a-regression-auto-ml-experiment-on-a-spark-table)
     - [Task 2 - View experiment details in Azure Machine Learning workspace](#task-2---view-experiment-details-in-azure-machine-learning-workspace)
+  - [Resources](#resources)
   
 
 ## Before the hands-on lab
