@@ -10,6 +10,7 @@ This lab has the following structure:
   - [Before the hands-on lab](#before-the-hands-on-lab)
     - [Task 1 - Register for the hands-on lab](#task-1---register-for-the-hands-on-lab)
     - [Task 2 - Check lab credentials](#task-2---check-lab-credentials)
+    - [Task 3 - Ensure the Synapse Analytics SQL pool is running](#task-3---ensure-the-synapse-analytics-sql-pool-is-running)
   - [Exercise 1 - Create an Azure Machine Learning linked service](#exercise-1---create-an-azure-machine-learning-linked-service)
     - [Task 1 - Create and configure an Azure Machine Learning linked service in Synapse Studio](#task-1---create-and-configure-an-azure-machine-learning-linked-service-in-synapse-studio)
     - [Task 2 - Explore Azure Machine Learning integration features in Synapse Studio](#task-2---explore-azure-machine-learning-integration-features-in-synapse-studio)
@@ -36,6 +37,12 @@ Select `Service Principal Details` to view the credentials of the service pricin
 ![Lab environment details - Service principal details](./../media/lab-credentials-02.png)
 
 Later on, during the lab, you will need the values for the `Application Id` and `Secret Key` properties displayed here.
+
+### Task 3 - Ensure the Synapse Analytics SQL pool is running
+
+From the Azure portal, open your Synapse workspace and then open Synapse Studio. In Synapse Studio, select the `Manage` hub on the left, and then select the `SQL pools` section. Locate the SQL pool named `SQLPool01` and make sure the status is `Online` (in case it is not, resume the SQL pool and wait until the resume process completes successfully).
+
+![Check SQL pool status](./../media/lab-check-sqlpool.png)
 
 ## Exercise 1 - Create an Azure Machine Learning linked service
 
@@ -87,6 +94,8 @@ First, we need to create a Spark table as a starting point for the Machine Learn
 
 ![Create new Spark table from Parquet file in primary data lake](./../media/lab-01-ex-01-task-02-create-spark-table.png)
 
+Ensure your notebook is attached to the Spark pool named `SparkPool01`.
+
 Replace the content of the notebook cell with the following code and then run the cell:
 
 ```python
@@ -102,7 +111,19 @@ df_consolidated.write.mode("overwrite").saveAsTable("default.SaleConsolidated")
 >
 >Replace `<data_lake_account_name>` with the actual name of your Synapse Analytics primary data lake account.
 
-The code takes all data available for December 2019 and aggregates it at the `ProductId`, `TransactionDate`, and `Hour` level, calculating the total product quantities sold as `TotalQuantity`. The result is then saved as a Spark table named `SaleConsolidated`. To view the table in the `Data`hub, expand the `default (Spark)` database in the `Workspace` section. Your table will show up in the `Tables` folder. Select the three dots at the right of the table name to view the `Machine Learning` option in the context menu.
+Run the notebook cell and wait until it completes.
+
+>**NOTE**
+>
+>The first cell executed in a notebook takes more time because of the initialization of the Spark session associated with the notebook. Expect up to 5 minutes for starting the Apache Spark session.
+
+The code takes all data available for December 2019 and aggregates it at the `ProductId`, `TransactionDate`, and `Hour` level, calculating the total product quantities sold as `TotalQuantity`. The result is then saved as a Spark table named `SaleConsolidated`. To view the table in the `Data` hub, expand the `default (Spark)` database in the `Workspace` section. 
+
+>**NOTE**
+>
+>If the `default (Spark)` database is not listed, refresh the `Databases` node by hovering over it, selecting the `... (Actions)` area and then selecting `Refresh`.
+
+Your table will show up in the `Tables` folder. Select the three dots at the right of the table name to view the `Machine Learning` option in the context menu.
 
 ![Machine Learning option in the context menu of a Spark table](./../media/lab-01-ex-01-task-02-ml-menu.png)
 
